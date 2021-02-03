@@ -189,7 +189,7 @@ int main(int argc, char **argv)
     ros::init(argc, argv, "laserOdometry");
     ros::NodeHandle nh;
 
-    nh.param<int>("mapping_skip_frame", skipFrameNum, 2);
+    nh.param<int>("mapping_skip_frame", skipFrameNum, 2); // 这里怎么理解 getparam的写法 获取mapping_skip_frame 的value 写到skipFrameNum 上，如果get不到指定的param， 给param 指定一个默认值2
 
     printf("Mapping %d Hz \n", 10 / skipFrameNum);
 
@@ -236,6 +236,7 @@ int main(int argc, char **argv)
                 timeCornerPointsLessSharp != timeLaserCloudFullRes ||
                 timeSurfPointsFlat != timeLaserCloudFullRes ||
                 timeSurfPointsLessFlat != timeLaserCloudFullRes)
+                // 这里是什么意思
             {
                 printf("unsync messeage!");
                 ROS_BREAK();
@@ -277,7 +278,7 @@ int main(int argc, char **argv)
                 int cornerPointsSharpNum = cornerPointsSharp->points.size();
                 int surfPointsFlatNum = surfPointsFlat->points.size();
 
-                TicToc t_opt;
+                TicToc t_opt; // here
                 for (size_t opti_counter = 0; opti_counter < 2; ++opti_counter)// 点到线以及点到面的ICP，迭代2次
                 {
                     corner_correspondence = 0;
