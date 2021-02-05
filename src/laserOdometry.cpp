@@ -291,7 +291,7 @@ int main(int argc, char **argv)
                     ceres::Problem::Options problem_options;
 
                     ceres::Problem problem(problem_options);
-                    problem.AddParameterBlock(para_q, 4, q_parameterization);
+                    problem.AddParameterBlock(para_q, 4, q_parameterization); // 这里是怎么回事？？？
                     problem.AddParameterBlock(para_t, 3);
 
                     pcl::PointXYZI pointSel;
@@ -306,7 +306,7 @@ int main(int argc, char **argv)
                         kdtreeCornerLast->nearestKSearch(pointSel, 1, pointSearchInd, pointSearchSqDis);// kdtree中的点云是上一帧的corner_less_sharp，所以这是在上一帧
                                                                                                         // 的corner_less_sharp中寻找当前帧corner_sharp特征点O的最近邻点（记为A）
 
-                        int closestPointInd = -1, minPointInd2 = -1;
+                        int closestPointInd = -1, minPointInd2 = -1; // here
                         if (pointSearchSqDis[0] < DISTANCE_SQ_THRESHOLD)// 如果最近邻的corner特征点之间距离平方小于阈值，则最近邻点A有效
                         {
                             closestPointInd = pointSearchInd[0];
